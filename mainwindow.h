@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QTime>
+#include <QHostAddress>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,9 +20,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
-
     void on_lineEdit_returnPressed();
 
 private:
@@ -33,6 +32,7 @@ private:
 
 public slots:
     void slotReadyRead();
+    void slotInfo();
 
 };
 #endif // MAINWINDOW_H
