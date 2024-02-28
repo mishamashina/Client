@@ -65,6 +65,7 @@ void MainWindow::slotReadyRead()
                     break;
                 }
                 in >> nextBlockSize;
+                qDebug() << "nextBlockSize client" << nextBlockSize;
             }
             if(socket->bytesAvailable() < nextBlockSize)
             {
@@ -74,6 +75,7 @@ void MainWindow::slotReadyRead()
             QTime time;
             in >> time >> str;
             nextBlockSize = 0;
+            qDebug() << "Data client" << str;
             ui->textBrowser->append(time.toString() + " " + str);
         }
     }
