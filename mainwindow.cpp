@@ -44,7 +44,7 @@ void MainWindow::SendToServer(QString str)
     out.device()->seek(0); // This function sets the current position to pos
     out << quint16(Data.size() - sizeof(quint16)); // Lenght of send block
     //qDebug() << "out" << out.;
-    qDebug() << "Data to server" << socket->write(Data);
+    //qDebug() << "str to server" << str << "Data to server" << Data;
     socket->write(Data); // QAbstractSocket remembers the address and port passed to connectToHost(), and functions like read() and write() use these values.
     ui->lineEdit->clear();
     // The readyRead() signal is emitted every time a new chunk of data has arrived
