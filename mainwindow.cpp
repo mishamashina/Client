@@ -22,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    socket->connectToHost("192.168.0.19", 2323); //Attempts to make a connection to hostName on the given port.
+    socket->connectToHost("192.168.109.133", 2323); //Attempts to make a connection to hostName on the given port.
 }
 
 void MainWindow::slotInfo()
@@ -34,24 +34,25 @@ void MainWindow::slotInfo()
     qDebug() << "localPort()" << socket->localPort() << "localAddress()" << socket->localAddress();
 }
 
-void MainWindow::SendToServer(QString str)
-{
-    //Read or write data by calling read() or write(), or use the convenience functions readLine() and readAll().
-    Data.clear();
-    QDataStream out(&Data, QIODevice::WriteOnly);
-    out.setVersion(QDataStream::Qt_5_15);
-    out << quint16(0) << QTime::currentTime() << str;
-    out.device()->seek(0); // This function sets the current position to pos
-    out << quint16(Data.size() - sizeof(quint16)); // Lenght of send block
-    //qDebug() << "out" << out.;
-    //qDebug() << "str to server" << str << "Data to server" << Data;
-    socket->write(Data); // QAbstractSocket remembers the address and port passed to connectToHost(), and functions like read() and write() use these values.
-    ui->lineEdit->clear();
-    // The readyRead() signal is emitted every time a new chunk of data has arrived
-}
+// void MainWindow::SendToServer(QString str)
+// {
+//     //Read or write data by calling read() or write(), or use the convenience functions readLine() and readAll().
+//     Data.clear();
+//     QDataStream out(&Data, QIODevice::WriteOnly);
+//     out.setVersion(QDataStream::Qt_5_15);
+//     out << quint16(0) << QTime::currentTime() << str;
+//     out.device()->seek(0); // This function sets the current position to pos
+//     out << quint16(Data.size() - sizeof(quint16)); // Lenght of send block
+//     //qDebug() << "out" << out.;
+//     //qDebug() << "str to server" << str << "Data to server" << Data;
+//     socket->write(Data); // QAbstractSocket remembers the address and port passed to connectToHost(), and functions like read() and write() use these values.
+//     ui->lineEdit->clear();
+//     // The readyRead() signal is emitted every time a new chunk of data has arrived
+// }
 
 void MainWindow::slotReadyRead()
 {
+    qDebug() << "Data arrive";
     QDataStream in(socket);
     in.setVersion(QDataStream::Qt_5_15);
     if(in.status() == QDataStream::Ok)
@@ -86,14 +87,14 @@ void MainWindow::slotReadyRead()
 }
 
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    SendToServer(ui->lineEdit->text());
-}
+// void MainWindow::on_pushButton_2_clicked()
+// {
+//     SendToServer(ui->lineEdit->text());
+// }
 
 
-void MainWindow::on_lineEdit_returnPressed()
-{
-    SendToServer(ui->lineEdit->text());
-}
+// void MainWindow::on_lineEdit_returnPressed()
+// {
+//     SendToServer(ui->lineEdit->text());
+// }
 

@@ -20,14 +20,14 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    void on_lineEdit_returnPressed();
+    // void on_pushButton_2_clicked();
+    // void on_lineEdit_returnPressed();
 
 private:
     Ui::MainWindow *ui;
     QTcpSocket* socket;
     QByteArray Data;
-    void SendToServer(QString str);
+    //void SendToServer(QString str);
     quint16 nextBlockSize;
 
 public slots:
