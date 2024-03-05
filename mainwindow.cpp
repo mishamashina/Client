@@ -22,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    socket->connectToHost("192.168.109.133", 2323); //Attempts to make a connection to hostName on the given port.
+    socket->connectToHost("192.168.0.19", 2323); //Attempts to make a connection to hostName on the given port.
 }
 
 void MainWindow::slotInfo()
@@ -77,7 +77,18 @@ void MainWindow::slotReadyRead()
             in >> time >> str;
             nextBlockSize = 0;
             qDebug() << "Data client" << str;
-            ui->textBrowser->append(time.toString() + " " + str);
+            //ui->textBrowser->append(time.toString() + " " + str);
+            ArriveData = time.toString() + " " + str;
+            ui->textBrowser->append(ArriveData);
+            qDebug() << "ArriveData" << ArriveData;
+            ArriveDataList = ArriveData.split(" ");
+            qDebug() << "ArriveDataList" << ArriveDataList;
+            for (int i = 0; i < ArriveDataList.size(); i ++)
+            {
+                qDebug() << "i =" << i << ArriveDataList.at(i);
+                QLabel *label = findChild<QLabel*>("label_" + QString::number(i));
+                label->setText(ArriveDataList.at(i));
+            }
         }
     }
     else
