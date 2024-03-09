@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     //Typically, you would connect the readyRead() signal to a slot and read all available data there.
     connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
+    connect(socket, &QTcpSocket::disconnected, this, &MainWindow::slotDisconnected);
     connect(socket, &QTcpSocket::connected, this, &MainWindow::slotInfo);
     nextBlockSize = 0;
 }
@@ -34,21 +35,10 @@ void MainWindow::slotInfo()
     qDebug() << "localPort()" << socket->localPort() << "localAddress()" << socket->localAddress();
 }
 
-// void MainWindow::SendToServer(QString str)
-// {
-//     //Read or write data by calling read() or write(), or use the convenience functions readLine() and readAll().
-//     Data.clear();
-//     QDataStream out(&Data, QIODevice::WriteOnly);
-//     out.setVersion(QDataStream::Qt_5_15);
-//     out << quint16(0) << QTime::currentTime() << str;
-//     out.device()->seek(0); // This function sets the current position to pos
-//     out << quint16(Data.size() - sizeof(quint16)); // Lenght of send block
-//     //qDebug() << "out" << out.;
-//     //qDebug() << "str to server" << str << "Data to server" << Data;
-//     socket->write(Data); // QAbstractSocket remembers the address and port passed to connectToHost(), and functions like read() and write() use these values.
-//     ui->lineEdit->clear();
-//     // The readyRead() signal is emitted every time a new chunk of data has arrived
-// }
+void MainWindow::slotDisconnected()
+{
+    qDebug() << "slotDisconnected Client" << socket->state();
+}
 
 void MainWindow::slotReadyRead()
 {
@@ -96,16 +86,3 @@ void MainWindow::slotReadyRead()
         ui->textBrowser->append("read error");
     }
 }
-
-
-// void MainWindow::on_pushButton_2_clicked()
-// {
-//     SendToServer(ui->lineEdit->text());
-// }
-
-
-// void MainWindow::on_lineEdit_returnPressed()
-// {
-//     SendToServer(ui->lineEdit->text());
-// }
-
