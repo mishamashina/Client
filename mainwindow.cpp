@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
-    //Typically, you would connect the readyRead() signal to a slot and read all available data there.
-    //connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
     connect(socket, &QTcpSocket::disconnected, this, &MainWindow::slotDisconnected);
     connect(socket, &QTcpSocket::connected, this, &MainWindow::slotInfo);
     nextBlockSize = 0;
