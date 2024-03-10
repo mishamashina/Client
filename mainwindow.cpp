@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     //Typically, you would connect the readyRead() signal to a slot and read all available data there.
-    connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
+    //connect(socket, &QTcpSocket::disconnected, socket, &QTcpSocket::deleteLater);
     connect(socket, &QTcpSocket::disconnected, this, &MainWindow::slotDisconnected);
     connect(socket, &QTcpSocket::connected, this, &MainWindow::slotInfo);
     nextBlockSize = 0;
@@ -37,7 +37,9 @@ void MainWindow::slotInfo()
 
 void MainWindow::slotDisconnected()
 {
-    qDebug() << "slotDisconnected Client" << socket->state();
+    qDebug() << "slotDisconnected Client";
+    socket = (QTcpSocket*)sender();
+    socket->deleteLater();
 }
 
 void MainWindow::slotReadyRead()
@@ -67,7 +69,6 @@ void MainWindow::slotReadyRead()
             in >> time >> str;
             nextBlockSize = 0;
             qDebug() << "Data client" << str;
-            //ui->textBrowser->append(time.toString() + " " + str);
             ArriveData = time.toString() + " " + str;
             ui->textBrowser->append(ArriveData);
             qDebug() << "ArriveData" << ArriveData;
