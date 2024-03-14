@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     connect(socket, &QTcpSocket::disconnected, this, &MainWindow::slotDisconnected);
@@ -21,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    socket->connectToHost("192.168.0.19", 2323); //Attempts to make a connection to hostName on the given port.
+    socket->connectToHost("localhost", 2323); //Attempts to make a connection to hostName on the given port.
 }
 
 void MainWindow::slotInfo()

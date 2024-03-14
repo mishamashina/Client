@@ -5,6 +5,7 @@
 #include <QTcpSocket>
 #include <QTime>
 #include <QHostAddress>
+#include <QStyle>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
