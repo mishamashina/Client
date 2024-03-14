@@ -6,12 +6,24 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Клиент");
+    this->resize(1280, 800);
+
+    QPalette Pal(palette());
+    Pal.setColor(QPalette::Background, QColor(25, 28, 31));
+    this->setAutoFillBackground(true);
+    this->setPalette(Pal);
 
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     connect(socket, &QTcpSocket::disconnected, this, &MainWindow::slotDisconnected);
     connect(socket, &QTcpSocket::connected, this, &MainWindow::slotInfo);
+
     nextBlockSize = 0;
+
+    connect(this, &MainWindow::signalSpeed, ui->widget, &WidgetSpeed::slotSpeed);
+    connect(this, &MainWindow::signalCharge, ui->widget_3, &WidgetCharge::slotCharge);
+    connect(this, &MainWindow::signalTemp, ui->widget_4, &WidgetTemp::slotTemp);
 }
 
 MainWindow::~MainWindow()
@@ -79,6 +91,9 @@ void MainWindow::slotReadyRead()
                 QLabel *label = findChild<QLabel*>("label_" + QString::number(i));
                 label->setText(ArriveDataList.at(i));
             }
+            emit signalSpeed(ArriveDataList.at(1));
+            emit signalCharge(ArriveDataList.at(2));
+            emit signalTemp(ArriveDataList.at(4));
         }
     }
     else

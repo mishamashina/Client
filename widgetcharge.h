@@ -1,0 +1,24 @@
+#ifndef WIDGETCHARGE_H
+#define WIDGETCHARGE_H
+
+#include <QWidget>
+#include <QPainter>
+#include <QDebug>
+
+class WidgetCharge : public QWidget
+{
+    Q_OBJECT
+public:
+    explicit WidgetCharge(QWidget *parent = nullptr);
+    void paintEvent(QPaintEvent *event);
+
+    int AcceptedChargeInt;
+    QString AcceptedChargeQString;
+
+public slots:
+    void slotCharge(QString charge);
+
+signals:
+};
+
+#endif // WIDGETCHARGE_H

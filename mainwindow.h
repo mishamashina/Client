@@ -35,5 +35,9 @@ public slots:
     void slotInfo();
     void slotDisconnected();
 
+signals:
+    void signalSpeed(QString speed);
+    void signalCharge(QString charge);
+    void signalTemp(QString temp);
 };
 #endif // MAINWINDOW_H

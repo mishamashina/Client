@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 12.0.2, 2024-03-14T13:49:07. -->
+<!-- Written by QtCreator 12.0.2, 2024-03-14T20:34:23. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -416,6 +416,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseTerminal">false</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/misha/QtProjects/build-Client-Qt_5_15_12_qt5_mingw32_win-Debug</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

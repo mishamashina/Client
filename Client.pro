@@ -10,10 +10,16 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    widgetcharge.cpp \
+    widgetspeed.cpp \
+    widgettemp.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    widgetcharge.h \
+    widgetspeed.h \
+    widgettemp.h
 
 FORMS += \
     mainwindow.ui
