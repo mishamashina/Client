@@ -12,6 +12,9 @@ public:
     explicit WidgetCharge(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
 
+    int count = 0;
+    int radius = 140;
+
     int AcceptedChargeInt;
     QString AcceptedChargeQString;
 

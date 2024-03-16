@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("Клиент");
+    // this->setMaximumWidth(1280);
+    // this->setMaximumHeight(800);
+    // this->showFullScreen();
     this->resize(1280, 800);
 
     QPalette Pal(palette());
@@ -34,7 +37,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    socket->connectToHost("localhost", 2323); //Attempts to make a connection to hostName on the given port.
+    socket->connectToHost("192.168.0.19", 2323); //Attempts to make a connection to hostName on the given port.
 }
 
 void MainWindow::slotInfo()

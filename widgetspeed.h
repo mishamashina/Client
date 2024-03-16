@@ -12,7 +12,8 @@ public:
     explicit WidgetSpeed(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
 
-    int radiusx = 100;
+    int count = 0;
+    int radius = 525/2;
     int AcceptedSpeedInt;
     QString AcceptedSpeedQString;
 
