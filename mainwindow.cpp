@@ -25,8 +25,16 @@ MainWindow::MainWindow(QWidget *parent)
     nextBlockSize = 0;
 
     connect(this, &MainWindow::signalSpeed, ui->widget, &WidgetSpeed::slotSpeed);
+    connect(this, &MainWindow::signalRight, ui->widget_2, &WidgetRight::slotRight);
     connect(this, &MainWindow::signalCharge, ui->widget_3, &WidgetCharge::slotCharge);
     connect(this, &MainWindow::signalTemp, ui->widget_4, &WidgetTemp::slotTemp);
+    connect(this, &MainWindow::signalTop, ui->widget_5, &WidgetTop::slotTop);
+}
+
+void MainWindow::showEvent(QShowEvent *event)
+{
+    Q_UNUSED(event)
+    socket->connectToHost("192.168.0.19", 2323);
 }
 
 MainWindow::~MainWindow()
@@ -96,6 +104,7 @@ void MainWindow::slotReadyRead()
             }
             emit signalSpeed(ArriveDataList.at(1));
             emit signalCharge(ArriveDataList.at(2));
+            emit signalTop(ArriveDataList.at(3));
             emit signalTemp(ArriveDataList.at(4));
         }
     }

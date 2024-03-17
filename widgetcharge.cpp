@@ -24,7 +24,7 @@ void WidgetCharge::paintEvent(QPaintEvent *event)
     QPoint center = painter.viewport().center();
     painter.drawRect(painter.viewport());
 
-    painter.setPen(QPen(QColor(15, 89, 201), 12, Qt::SolidLine, Qt::RoundCap));
+    painter.setPen(QPen(QColor(15, 89, 201), 15, Qt::SolidLine, Qt::RoundCap));
 
     painter.drawArc(QRect(10, 10, 260, 260), 1440 , count*57.6);
     painter.drawText(center, AcceptedChargeQString);

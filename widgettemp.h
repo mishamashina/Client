@@ -12,8 +12,11 @@ public:
     explicit WidgetTemp(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
 
+    int count = -10;
+    int i = 0;
     int AcceptedTempInt;
     QString AcceptedTempQString;
+    QVector <QRect*> Rects;
 
 public slots:
     void slotTemp(QString temp);

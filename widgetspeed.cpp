@@ -58,20 +58,9 @@ void WidgetSpeed::paintEvent(QPaintEvent *event)
     painter.setPen(QPen(Qt::white));
     painter.drawText(center, AcceptedSpeedQString);
 
-    QPixmap Distance("Distance_icon.png");
-    QPixmap AVG("AVG_icon.png");
-    QPixmap Power("Power_icon.png");
-    //QImage Speed("Speed.bmp");
-    painter.drawPixmap(center, Distance);
-    painter.drawPixmap(QPoint(center.rx(), center.ry() + 50), AVG);
-    painter.drawPixmap(QPoint(center.rx(), center.ry() + 100), Power);
-    //painter.drawImage(painter.viewport(), Speed);
-
     painter.setPen(QPen(QColor(22, 48, 87), 5, Qt::SolidLine, Qt::RoundCap));
     painter.drawArc(QRect(5,5, 515, 515), -480, 2880+960);
     painter.drawArc(QRect(19,19, 485, 485), -480, 2880+960);
-    //painter.drawArc(center.rx(),center.ry(), 515, 515, -480, 2880+960);
-    //painter.drawArc(painter.viewport(), -480, 2880+960);
     painter.translate(center);
 
     QPoint p1(radius-20,0);
