@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QPainter>
 #include <QDebug>
+#include <QFontDatabase>
+#include <QCoreApplication>
 
 class WidgetSpeed : public QWidget
 {

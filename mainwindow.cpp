@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+//#define SERVER_IP "127.0.0.1"
+#define SERVER_IP "172.20.10.2"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -7,9 +9,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("Клиент");
-    // this->setMaximumWidth(1280);
-    // this->setMaximumHeight(800);
-    // this->showFullScreen();
+//     this->setMaximumWidth(1280);
+//     this->setMaximumHeight(800);
+//     this->setWindowState(Qt::WindowFullScreen);
     this->resize(1280, 800);
 
     QPalette Pal(palette());
@@ -29,12 +31,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::signalCharge, ui->widget_3, &WidgetCharge::slotCharge);
     connect(this, &MainWindow::signalTemp, ui->widget_4, &WidgetTemp::slotTemp);
     connect(this, &MainWindow::signalTop, ui->widget_5, &WidgetTop::slotTop);
+    ui->textBrowser->hide();
+    ui->pushButton->hide();
+    ui->layoutWidget->hide();
 }
 
 void MainWindow::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event)
-    socket->connectToHost("192.168.0.19", 2323);
+    socket->connectToHost(SERVER_IP , 2323);
 }
 
 MainWindow::~MainWindow()
@@ -45,7 +50,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    socket->connectToHost("192.168.0.19", 2323); //Attempts to make a connection to hostName on the given port.
+    socket->connectToHost(SERVER_IP, 2323); //Attempts to make a connection to hostName on the given port.
 }
 
 void MainWindow::slotInfo()

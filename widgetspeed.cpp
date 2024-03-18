@@ -8,13 +8,13 @@ WidgetSpeed::WidgetSpeed(QWidget *parent)
 
 void WidgetSpeed::slotSpeed(QString speed)
 {
-    count += 1;
-    if (count == 120){count = 0;}
-    qDebug() << "Speed accepted" << speed;
+   count += 1;
+   if (count == 120){count = 0;}
+   qDebug() << "Speed accepted" << speed;
     // AcceptedSpeedInt = speed.toInt();
     // AcceptedSpeedQString = speed;
-    AcceptedSpeedInt = count;
-    AcceptedSpeedQString = AcceptedSpeedQString.number(count);
+   AcceptedSpeedInt = count;
+   AcceptedSpeedQString = AcceptedSpeedQString.number(count);
     update();
 }
 
@@ -26,23 +26,24 @@ void WidgetSpeed::paintEvent(QPaintEvent *event)
     QRect r(0,0, this->width(), this->height());
     QPoint center = r.center();
 
-    painter.drawRect(painter.viewport());
+//    painter.drawRect(painter.viewport());
 
-    QFont FontNubmer("Ubuntu", 25, QFont::Thin);
+//    int idFont = QFontDatabase::addApplicationFont(QCoreApplication::applicationDirPath() + "\Jura-Medium.woff");
+//    int idFont = QFontDatabase::addApplicationFont("Jura-Medium.woff");
+//    QString juraFont = QFontDatabase::applicationFontFamilies(idFont).at(0);
+//    painter.setFont(QFont(juraFont , 25));
 
-    QFont font2("Ubuntu", 20, QFont::Bold);
-
-    painter.setFont(FontNubmer);
+    painter.setFont(QFont("Ubuntu", 25, QFont::Thin));
     painter.setPen(QPen(Qt::white));
 
     QPoint p11(390,380); //120 // 280,280
     QPoint p22(415,170+60);
     QPoint p3(370, 90+30); //
-    QPoint p4(245, 40+30);
+    QPoint p4(244, 40+30);
     QPoint p5(110, 90+30);
     QPoint p6(50, 170+60);
     QPoint p7(70, 280+100); // 0
-    QPoint k(245,320);
+    QPoint k(235,340);
 
     painter.drawText(p11, "120");
     painter.drawText(p22, "100");
@@ -51,12 +52,15 @@ void WidgetSpeed::paintEvent(QPaintEvent *event)
     painter.drawText(p5, "40");
     painter.drawText(p6, "20");
     painter.drawText(p7, "0");
+//    painter.setFont(QFont(juraFont , 20));
+    painter.setFont(QFont("Ubuntu", 20, QFont::Thin));
     painter.drawText(k, "км/ч");
 
 
-    painter.setFont(QFont("Ubuntu", 55, QFont::Medium));
+//    painter.setFont(QFont(juraFont, 75));
+    painter.setFont(QFont("Ubuntu", 75, QFont::Medium));
     painter.setPen(QPen(Qt::white));
-    painter.drawText(center, AcceptedSpeedQString);
+    painter.drawText(QRect(center.x() - 110, center.y() - 60, 220, 120), Qt::AlignVCenter | Qt::AlignHCenter,  AcceptedSpeedQString);
 
     painter.setPen(QPen(QColor(22, 48, 87), 5, Qt::SolidLine, Qt::RoundCap));
     painter.drawArc(QRect(5,5, 515, 515), -480, 2880+960);

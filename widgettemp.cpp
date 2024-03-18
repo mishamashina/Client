@@ -6,11 +6,11 @@ WidgetTemp::WidgetTemp(QWidget *parent)
 
 void WidgetTemp::slotTemp(QString temp)
 {
-    count += 1;
-    qDebug() << "Temp accepted" << temp;
-    if (count == 70){count = -10;}
-    AcceptedTempInt = count;
-    AcceptedTempQString = AcceptedTempQString.number(count);
+   count += 1;
+   qDebug() << "Temp accepted" << temp;
+   if (count == 70){count = -10;}
+   AcceptedTempInt = count;
+   AcceptedTempQString = AcceptedTempQString.number(count);
     // AcceptedTempInt = temp.toInt();
     // AcceptedTempQString = temp;
     update();
@@ -24,10 +24,17 @@ void WidgetTemp::paintEvent(QPaintEvent *event)
     QRect r(0,0, this->width(), this->height());
     QPoint center = r.center();
 
-    painter.drawRect(painter.viewport());
+//    qDebug() << this->width() << " " << this->height();
+//    painter.drawRect(painter.viewport());
 
-    painter.setPen(Qt::red);
-    painter.drawText(center, AcceptedTempQString);
+    painter.setPen(QPen(Qt::white, 12, Qt::SolidLine, Qt::RoundCap));
+    painter.setFont(QFont("Ubuntu", 17, QFont::Medium));
+    painter.drawText(QRect(center.x() - 80, 0, 160, 37), Qt::AlignVCenter | Qt::AlignHCenter,  AcceptedTempQString + " °C");
+    painter.setFont(QFont("Ubuntu", 12, QFont::Thin));
+    painter.drawText(QRect(center.x() - 100, 80-36+3, 200, 36), Qt::AlignVCenter | Qt::AlignHCenter,  "Температура батареи");
+    painter.setFont(QFont("Ubuntu", 11, QFont::Medium));
+    painter.drawText(QRect(2, 6, 34, 37), Qt::AlignVCenter | Qt::AlignHCenter,  "-10");
+    painter.drawText(QRect(this->width()-34-2 , 6, 34, 37), Qt::AlignVCenter | Qt::AlignHCenter,  "70");
     // 36x9
     painter.setPen(Qt::NoPen);
     // if (count  < 0)
