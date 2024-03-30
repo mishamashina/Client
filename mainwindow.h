@@ -18,10 +18,14 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     void showEvent(QShowEvent* event) override;
+
+    void createMenus();
+    void createActions();
+
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    //void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -30,6 +34,12 @@ private:
     quint16 nextBlockSize;
     QString ArriveData;
     QStringList ArriveDataList;
+
+    QMenu* Design;
+    const char* member;
+    QAction* Variant_1;
+    QAction* Variant_2;
+
 
 public slots:
     void slotReadyRead();

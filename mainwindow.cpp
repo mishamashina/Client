@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 //#define SERVER_IP "127.0.0.1"
-#define SERVER_IP "172.20.10.2"
+#define SERVER_IP "192.168.0.19"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,6 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
     this->setAutoFillBackground(true);
     this->setPalette(Pal);
 
+    createActions();
+    //createMenus();
+
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
     connect(socket, &QTcpSocket::disconnected, this, &MainWindow::slotDisconnected);
@@ -31,9 +34,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::signalCharge, ui->widget_3, &WidgetCharge::slotCharge);
     connect(this, &MainWindow::signalTemp, ui->widget_4, &WidgetTemp::slotTemp);
     connect(this, &MainWindow::signalTop, ui->widget_5, &WidgetTop::slotTop);
-    ui->textBrowser->hide();
-    ui->pushButton->hide();
-    ui->layoutWidget->hide();
+
+    //connect(Variant_1, &QAction::triggered, ui->widget_3, &WidgetCharge::slotVariant1);
+
+    // ui->textBrowser->hide();
+    // ui->pushButton->hide();
+    // ui->layoutWidget->hide();
 }
 
 void MainWindow::showEvent(QShowEvent *event)
@@ -42,16 +48,37 @@ void MainWindow::showEvent(QShowEvent *event)
     socket->connectToHost(SERVER_IP , 2323);
 }
 
+void MainWindow::createMenus()
+{
+    // ui->Design->addAction(Variant_1);
+    // ui->Design->addAction(Variant_2);
+}
+
+void MainWindow::createActions()
+{
+    // Variant_1 = new QAction(tr("&Вариант 1"), this);
+    // Variant_1->setStatusTip(tr("Первый вариант"));
+    // Variant_1->setCheckable(true);
+
+    // Variant_2 = new QAction(tr("&Вариант 2"), this);
+    // Variant_2->setStatusTip(tr("Второй вариант"));
+    // Variant_2->setCheckable(true);
+
+    // ui->Design->addAction(Variant_1);
+    // ui->Design->addAction(Variant_2);
+
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
 
-void MainWindow::on_pushButton_clicked()
-{
-    socket->connectToHost(SERVER_IP, 2323); //Attempts to make a connection to hostName on the given port.
-}
+// void MainWindow::on_pushButton_clicked()
+// {
+//     socket->connectToHost(SERVER_IP, 2323); //Attempts to make a connection to hostName on the given port.
+// }
 
 void MainWindow::slotInfo()
 {
@@ -97,16 +124,16 @@ void MainWindow::slotReadyRead()
             nextBlockSize = 0;
             qDebug() << "Data client" << str;
             ArriveData = time.toString() + " " + str;
-            ui->textBrowser->append(ArriveData);
+            //ui->textBrowser->append(ArriveData);
             qDebug() << "ArriveData" << ArriveData;
             ArriveDataList = ArriveData.split(" ");
             qDebug() << "ArriveDataList" << ArriveDataList;
-            for (int i = 0; i < ArriveDataList.size(); i ++)
-            {
-                qDebug() << "i =" << i << ArriveDataList.at(i);
-                QLabel *label = findChild<QLabel*>("label_" + QString::number(i));
-                label->setText(ArriveDataList.at(i));
-            }
+            // for (int i = 0; i < ArriveDataList.size(); i ++)
+            // {
+            //     qDebug() << "i =" << i << ArriveDataList.at(i);
+            //     QLabel *label = findChild<QLabel*>("label_" + QString::number(i));
+            //     label->setText(ArriveDataList.at(i));
+            // }
             emit signalSpeed(ArriveDataList.at(1));
             emit signalCharge(ArriveDataList.at(2));
             emit signalTop(ArriveDataList.at(3));
@@ -115,6 +142,6 @@ void MainWindow::slotReadyRead()
     }
     else
     {
-        ui->textBrowser->append("read error");
+        //ui->textBrowser->append("read error");
     }
 }

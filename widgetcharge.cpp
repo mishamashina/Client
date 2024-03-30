@@ -2,7 +2,8 @@
 
 WidgetCharge::WidgetCharge(QWidget *parent)
     : QWidget{parent}
-{}
+{
+}
 
 void WidgetCharge::slotCharge(QString charge)
 {
@@ -13,7 +14,12 @@ void WidgetCharge::slotCharge(QString charge)
     // AcceptedChargeQString = charge;
    AcceptedChargeInt = count;
    AcceptedChargeQString = AcceptedChargeQString.number(count);
-    update();
+   update();
+}
+
+void WidgetCharge::slotVariant1()
+{
+    qDebug() << "slotVariant1";
 }
 
 void WidgetCharge::paintEvent(QPaintEvent *event)
@@ -28,8 +34,8 @@ void WidgetCharge::paintEvent(QPaintEvent *event)
 //    QPoint center = r.center();
 
     painter.setPen(QPen(QColor(15, 89, 201), 15, Qt::SolidLine, Qt::RoundCap));
+    painter.drawArc(QRect(10, -104, 732, 732), -1440-730, -14.2*AcceptedChargeInt);
 
-    painter.drawArc(QRect(10, 10, 260, 260), 1440 , AcceptedChargeInt*57.6);
 //    painter.drawText(center, AcceptedChargeQString);
     painter.setFont(QFont("Ubuntu", 40, QFont::Medium));
     painter.setPen(QPen(Qt::white));
@@ -37,5 +43,4 @@ void WidgetCharge::paintEvent(QPaintEvent *event)
     painter.setFont(QFont("Ubuntu", 14, QFont::Thin));
     painter.setPen(QPen(Qt::white));
     painter.drawText(QRect(center.x() - 110, center.y() + 20, 220, 120), Qt::AlignHCenter | Qt::AlignTop,  "Заряд батареи");
-
 }

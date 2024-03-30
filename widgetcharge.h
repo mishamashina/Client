@@ -20,6 +20,7 @@ public:
 
 public slots:
     void slotCharge(QString charge);
+    void slotVariant1();
 
 signals:
 };
