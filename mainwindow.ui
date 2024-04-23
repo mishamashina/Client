@@ -43,7 +43,7 @@
    <widget class="WidgetCharge" name="widget_3" native="true">
     <property name="geometry">
      <rect>
-      <x>40</x>
+      <x>0</x>
       <y>136</y>
       <width>280</width>
       <height>527</height>
@@ -53,10 +53,10 @@
    <widget class="WidgetTemp" name="widget_4" native="true">
     <property name="geometry">
      <rect>
-      <x>480</x>
-      <y>666</y>
-      <width>320</width>
-      <height>80</height>
+      <x>1000</x>
+      <y>136</y>
+      <width>280</width>
+      <height>527</height>
      </rect>
     </property>
    </widget>
@@ -81,6 +81,12 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_gdgd">
+    <property name="title">
+     <string> gdgd</string>
+    </property>
+   </widget>
+   <addaction name="menu_gdgd"/>
   </widget>
  </widget>
  <customwidgets>

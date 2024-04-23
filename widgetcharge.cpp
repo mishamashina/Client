@@ -28,13 +28,18 @@ void WidgetCharge::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     QPoint center = painter.viewport().center();
-//    painter.drawRect(painter.viewport());
 
-//    QRect r(0,0, this->width(), this->height());
-//    QPoint center = r.center();
+    painter.setPen(QPen(Qt::lightGray, 2, Qt::SolidLine));
+    painter.drawArc(QRect(25, -229-136, 1250, 1250), -1440-1050, -770);
 
     painter.setPen(QPen(QColor(15, 89, 201), 15, Qt::SolidLine, Qt::RoundCap));
-    painter.drawArc(QRect(10, -104, 732, 732), -1440-730, -14.2*AcceptedChargeInt);
+    painter.drawArc(QRect(25, -229-136, 1250, 1250), -1440-1050, -7.7*AcceptedChargeInt);
+
+
+    painter.setBrush(QBrush(Qt::lightGray));
+    painter.setPen(Qt::NoPen);
+    painter.drawRoundedRect(65, 517, 30, 10, 5, 5);
+    painter.drawRoundedRect(65, 0, 30, 10, 5, 5);
 
 //    painter.drawText(center, AcceptedChargeQString);
     painter.setFont(QFont("Ubuntu", 40, QFont::Medium));

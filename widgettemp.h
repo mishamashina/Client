@@ -13,6 +13,7 @@ public:
     void paintEvent(QPaintEvent *event);
 
     int count = -10;
+    int count_2 = 0;
     int i = 0;
     int AcceptedTempInt;
     QString AcceptedTempQString;

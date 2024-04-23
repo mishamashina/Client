@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 //#define SERVER_IP "127.0.0.1"
+//#define SERVER_IP "192.168.0.19"
 #define SERVER_IP "192.168.0.19"
 
 MainWindow::MainWindow(QWidget *parent)
@@ -9,9 +10,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setWindowTitle("Клиент");
-//     this->setMaximumWidth(1280);
-//     this->setMaximumHeight(800);
-//     this->setWindowState(Qt::WindowFullScreen);
     this->resize(1280, 800);
 
     QPalette Pal(palette());
