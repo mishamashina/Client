@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->setPalette(Pal);
 
     createActions();
-    //createMenus();
+    createMenus();
 
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::slotReadyRead);
@@ -33,7 +33,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::signalTemp, ui->widget_4, &WidgetTemp::slotTemp);
     connect(this, &MainWindow::signalTop, ui->widget_5, &WidgetTop::slotTop);
 
-    //connect(Variant_1, &QAction::triggered, ui->widget_3, &WidgetCharge::slotVariant1);
+    connect(Variant_1, &QAction::toggled, ui->widget_3, &WidgetCharge::slotVariant1);
+    connect(Variant_2, &QAction::toggled, ui->widget_3, &WidgetCharge::slotVariant2);
+
+    connect(ui->widget_3, &WidgetCharge::signalVariant2off, Variant_2, &QAction::setChecked);
+    connect(ui->widget_3, &WidgetCharge::signalVariant1off, Variant_1, &QAction::setChecked);
+
+
 
     // ui->textBrowser->hide();
     // ui->pushButton->hide();
@@ -48,23 +54,22 @@ void MainWindow::showEvent(QShowEvent *event)
 
 void MainWindow::createMenus()
 {
-    // ui->Design->addAction(Variant_1);
-    // ui->Design->addAction(Variant_2);
+    Сustomization = menuBar()->addMenu(tr("&Кастомизация"));
+
+    Сustomization->addAction(Variant_1);
+    Сustomization->addAction(Variant_2);
 }
 
 void MainWindow::createActions()
 {
-    // Variant_1 = new QAction(tr("&Вариант 1"), this);
-    // Variant_1->setStatusTip(tr("Первый вариант"));
-    // Variant_1->setCheckable(true);
+    Variant_1 = new QAction(tr("&Вариант 1"), this);
+    Variant_1->setStatusTip(tr("Первый вариант"));
+    Variant_1->setCheckable(true);
 
-    // Variant_2 = new QAction(tr("&Вариант 2"), this);
-    // Variant_2->setStatusTip(tr("Второй вариант"));
-    // Variant_2->setCheckable(true);
-
-    // ui->Design->addAction(Variant_1);
-    // ui->Design->addAction(Variant_2);
-
+    Variant_2 = new QAction(tr("&Вариант 2"), this);
+    Variant_2->setStatusTip(tr("Второй вариант"));
+    Variant_2->setCheckable(true);
+    Variant_2->setChecked(true);
 }
 
 MainWindow::~MainWindow()

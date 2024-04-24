@@ -31,7 +31,7 @@ void WidgetTemp::paintEvent(QPaintEvent *event)
     painter.drawArc(QRect(30-1025, -229-136, 1250, 1250), -390, 770);
 
     painter.setPen(QPen(QColor(15, 89, 201), 15, Qt::SolidLine, Qt::RoundCap));
-    painter.drawArc(QRect(30-1025, -229-136, 1250, 1250), -390, 9.7*count_2);
+    painter.drawArc(QRect(30-1025, -229-136, 1250, 1250), -390, 9.625*count_2);
 
     painter.setBrush(QBrush(Qt::lightGray));
     painter.setPen(Qt::NoPen);

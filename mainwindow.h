@@ -35,8 +35,7 @@ private:
     QString ArriveData;
     QStringList ArriveDataList;
 
-    QMenu* Design;
-    const char* member;
+    QMenu *Сustomization;
     QAction* Variant_1;
     QAction* Variant_2;
 
