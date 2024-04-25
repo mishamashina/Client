@@ -36,6 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(Variant_1, &QAction::toggled, ui->widget_3, &WidgetCharge::slotVariant1);
     connect(Variant_2, &QAction::toggled, ui->widget_3, &WidgetCharge::slotVariant2);
 
+    connect(Variant_1, &QAction::toggled, ui->widget_2, &WidgetRight::slotVariant1);
+    connect(Variant_2, &QAction::toggled, ui->widget_2, &WidgetRight::slotVariant2);
+
     connect(ui->widget_3, &WidgetCharge::signalVariant2off, Variant_2, &QAction::setChecked);
     connect(ui->widget_3, &WidgetCharge::signalVariant1off, Variant_1, &QAction::setChecked);
 

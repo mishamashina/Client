@@ -13,8 +13,13 @@ public:
     explicit WidgetRight(QWidget *parent = nullptr);
     void paintEvent(QPaintEvent *event);
 
+    bool checkedVariant1;
+    bool checkedVariant2;
+
 public slots:
     void slotRight();
+    void slotVariant1(bool checked);
+    void slotVariant2(bool checked);
 
 signals:
 };

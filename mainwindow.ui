@@ -33,10 +33,10 @@
    <widget class="WidgetRight" name="widget_2" native="true">
     <property name="geometry">
      <rect>
-      <x>960</x>
-      <y>312</y>
-      <width>265</width>
-      <height>257</height>
+      <x>243</x>
+      <y>650</y>
+      <width>794</width>
+      <height>80</height>
      </rect>
     </property>
    </widget>
